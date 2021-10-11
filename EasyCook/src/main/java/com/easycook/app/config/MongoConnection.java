@@ -1,0 +1,73 @@
+package com.easycook.app.config;
+
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClients;
+import org.bson.Document;
+import org.bson.types.ObjectId;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+public class MongoConnection {
+	private static MongoClient mongoClient;
+    private static final String DB = "D3JS";
+
+    public MongoConnection() {
+        ConnectionString uri = new ConnectionString(
+                String.format("mongodb+srv://Admin-wey:Admin123@cluster0.x3mmf.mongodb.net/%s?retryWrites=true&w=majority", DB));
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(uri)
+                .build();
+        mongoClient = MongoClients.create(settings);
+    }
+
+    public static MongoCollection<Document> findCollection(String collectionName) {
+        MongoDatabase mongoBD = mongoClient.getDatabase(DB);
+        return mongoBD.getCollection(collectionName);
+    }
+
+    public static void insertObject(String collectionName, Document nDoc) {
+        MongoDatabase mongoBD = mongoClient.getDatabase(DB);
+        MongoCollection<Document> colection = mongoBD.getCollection(collectionName);
+
+        colection.insertOne(nDoc);
+    }
+
+    public static void updateObject(String nameCollection, String _id,  Document nDoc) {
+        MongoDatabase mongoBD = mongoClient.getDatabase(DB);
+        MongoCollection<Document> collection = mongoBD.getCollection(nameCollection);
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(_id));
+
+        collection.replaceOne(query, nDoc);
+    }
+
+    public static Document searchByID(String collectionName, String _id) {
+        MongoDatabase mongoBD = mongoClient.getDatabase(DB);
+        MongoCollection<Document> collection = mongoBD.getCollection(collectionName);
+
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(_id));
+
+        Document doc = collection.find(query).first();
+        return doc;
+    }
+
+
+    public static void deleteByID(String collectionName, String _id) {
+        MongoDatabase mongoBD = mongoClient.getDatabase(DB);
+        MongoCollection<Document> collection = mongoBD.getCollection(collectionName);
+
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(_id));
+
+        collection.deleteOne(query);
+    }
+
+    public static void closeMongoDB() {
+        mongoClient.close();
+    }
+}

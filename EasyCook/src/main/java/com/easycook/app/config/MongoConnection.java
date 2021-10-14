@@ -13,11 +13,11 @@ import com.mongodb.client.MongoDatabase;
 
 public class MongoConnection {
 	private static MongoClient mongoClient;
-    private static final String DB = "D3JS";
+    private static final String DB = "EasyCook";
 
     public MongoConnection() {
         ConnectionString uri = new ConnectionString(
-                String.format("mongodb+srv://Admin-wey:Admin123@cluster0.x3mmf.mongodb.net/%s?retryWrites=true&w=majority", DB));
+                String.format("mongodb+srv://EasyCook1:cesar2558@cluster0.xrctp.mongodb.net/%s?retryWrites=true&w=majority", DB));
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(uri)
                 .build();

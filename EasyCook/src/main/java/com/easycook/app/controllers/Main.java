@@ -1,17 +1,32 @@
 package com.easycook.app.controllers;
 
-import com.easycook.app.config.MongoConnection;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import org.bson.Document;
+import java.util.List;
+
+import com.easycook.app.entities.Consumer;
 
 public class Main {
     public static void main(String[] args) {
-        MongoConnection mongoConnection = new MongoConnection();
-        MongoCollection<Document> documents = MongoConnection.findCollection("DATES");
-        MongoCursor<Document> cursor = documents.find().iterator();
-        while (cursor.hasNext()) {
-            System.out.println("collection is " +cursor.next() );
-        }
+        ConsumerController consumerController = new ConsumerController();
+        Consumer consumer = new Consumer("ConsumerTest");
+        
+        consumerController.createConsumer(consumer);
+        Consumer newConsumer = consumerController.findByName("ConsumerTest");
+        System.out.println(newConsumer);
+
+        List<Consumer> consumers = consumerController.findAllConsumers();
+        consumers.forEach(System.out::println);
+
+        consumerController.updateConsumer(consumer);
+
+        consumers = consumerController.findAllConsumers();
+        consumers.forEach(c -> System.out.println(c));
+
+        newConsumer = consumerController.findByName("ConsumerTest");
+        System.out.println(newConsumer.get_id().toString());
+
+        consumerController.deleteConsumer(newConsumer);
+
+        consumers = consumerController.findAllConsumers();
+        consumers.forEach(System.out::println);
     }
 }

@@ -3,17 +3,44 @@ package com.easycook.app.entities;
 import java.util.ArrayList;
 
 public class Recipe {
-    private String id;
-    private String name;
-    private ArrayList<Ingredient> ingredients;
-    private int minPeople;
-    private int maxPeople;
+    public static final String COLLECTION_NAME = "recipe";
 
+    private int id;
+    private String name;
+    private int cookingTime;
+    private ArrayList<Ingredient> ingredients;
+    private int amountPeople;
+    private String urlImage;
+
+    public Recipe(int id, String name, int cookingTime, int amountPeople,ArrayList<Ingredient> ingredients,String url) {
+        this.id = id;
+        this.name = name;
+        this.cookingTime = cookingTime;
+        this.amountPeople = amountPeople;
+        this.ingredients = ingredients;
+        this.urlImage = url;
+    }
     
-    public String getId() {
+
+    public static String getCollectionName() {
+        return COLLECTION_NAME;
+    }
+
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+
+    public int getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getName() {
@@ -28,18 +55,22 @@ public class Recipe {
     public void setIngredients(ArrayList<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
-    public int getMinPeople() {
-        return minPeople;
+    public int getCookingTime() {
+        return cookingTime;
     }
-    public void setMinPeople(int minPeople) {
-        this.minPeople = minPeople;
+    public void setCookingTime(int cookingTime) {
+        this.cookingTime = cookingTime;
     }
-    public int getMaxPeople() {
-        return maxPeople;
+    public int getAmountPeople() {
+        return amountPeople;
     }
-    public void setMaxPeople(int maxPeople) {
-        this.maxPeople = maxPeople;
+    public void setAmountPeople(int amountPeople) {
+        this.amountPeople = amountPeople;
     }
-
+    
+    @Override
+    public String toString() {
+        return super.toString();
+    }
     
 }

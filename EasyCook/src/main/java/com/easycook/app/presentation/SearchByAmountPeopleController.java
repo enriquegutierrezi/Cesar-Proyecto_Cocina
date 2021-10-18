@@ -34,7 +34,7 @@ public class SearchByAmountPeopleController {
     private Button returnButton;
 
     @FXML
-    private TextField txtIngredient;
+    private TextField txtamount;
 
     @FXML
     void NextPage(ActionEvent event) {
@@ -49,9 +49,9 @@ public class SearchByAmountPeopleController {
     @FXML
     void SearchRecipe(ActionEvent event) {
         RecipeController recipeController = new RecipeController();
-        List<Recipe> recipes = recipeController.findByAmount(Integer.parseInt(txtIngredient.getText()));
+        List<Recipe> recipes = recipeController.findByAmount(Integer.parseInt(txtamount.getText()));
 
-        Image recipe1 = new Image(recipes.get(0).getUrlImage());
+        Image recipe1 = new Image(recipes.get(2).getUrlImage());
     
         ImageRecipe1.setImage(recipe1);
     }

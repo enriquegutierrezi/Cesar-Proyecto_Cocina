@@ -7,10 +7,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.SearchByAmountPeopleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.SearchByCookingTimeController">
    <children>
-      <TextField fx:id="txtamount" layoutX="173.0" layoutY="38.0" prefHeight="26.0" prefWidth="159.0" />
-      <Text layoutX="23.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la cantida de comensales" wrappingWidth="136.8128662109375">
+      <TextField fx:id="txtTime" layoutX="173.0" layoutY="38.0" prefHeight="26.0" prefWidth="159.0" />
+      <Text layoutX="23.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el tiempo de prerparación" wrappingWidth="136.8128662109375">
          <font>
             <Font size="23.0" />
          </font>

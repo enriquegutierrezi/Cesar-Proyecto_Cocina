@@ -58,6 +58,6 @@ public class Main {
         */
 
         RecipeController recipeController = new RecipeController();
-        recipeController.findByIngredient("Arroz").forEach(System.out::println);
+        recipeController.findByAmount(8).forEach(System.out::println);
     }
 }

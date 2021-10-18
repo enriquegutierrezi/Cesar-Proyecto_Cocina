@@ -21,8 +21,8 @@ public class SearchMenuController {
     private Button timeButton;
 
     @FXML
-    void SearchByCookingTime(ActionEvent event) {
-
+    void SearchByCookingTime(ActionEvent event) throws IOException {
+        App.setRoot("searchByCookingTime");
     }
 
     @FXML

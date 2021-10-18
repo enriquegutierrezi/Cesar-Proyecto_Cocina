@@ -31,7 +31,7 @@ public class PrimaryController {
 
     @FXML
     void GoToLoginForm(ActionEvent event) throws IOException {
-        
+        App.setRoot("Login");
     }
 
     @FXML

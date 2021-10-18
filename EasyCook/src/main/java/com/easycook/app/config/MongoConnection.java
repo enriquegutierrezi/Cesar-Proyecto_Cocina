@@ -67,6 +67,16 @@ public class MongoConnection {
         return doc;
     }
 
+    public static Document searchByLocalID(String collectionName, int id) {
+        MongoDatabase mongoBD = mongoClient.getDatabase(DB);
+        MongoCollection<Document> collection = mongoBD.getCollection(collectionName);
+
+        BasicDBObject query = new BasicDBObject();
+        query.put("id", id);
+
+        Document doc = collection.find(query).first();
+        return doc;
+    }
 
     public static void deleteByID(String collectionName, String _id) {
         MongoDatabase mongoBD = mongoClient.getDatabase(DB);
@@ -74,6 +84,16 @@ public class MongoConnection {
 
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(_id));
+
+        collection.deleteOne(query);
+    }
+
+    public static void deleteByLocalID(String collectionName, int id) {
+        MongoDatabase mongoBD = mongoClient.getDatabase(DB);
+        MongoCollection<Document> collection = mongoBD.getCollection(collectionName);
+
+        BasicDBObject query = new BasicDBObject();
+        query.put("id", id);
 
         collection.deleteOne(query);
     }

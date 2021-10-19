@@ -19,5 +19,6 @@
       <Button fx:id="CreateRecipeButton" layoutX="81.0" layoutY="150.0" mnemonicParsing="false" onAction="#GoToCreateRecipe" prefHeight="70.0" prefWidth="237.0" text="Crear Receta" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="79.0" />
       <Button fx:id="CreateBlogButton" layoutX="81.0" layoutY="257.0" mnemonicParsing="false" onAction="#GoToCreateBlog" prefHeight="70.0" prefWidth="237.0" text="Crear Blog" />
       <Button fx:id="LogOutButton" layoutX="22.0" layoutY="542.0" mnemonicParsing="false" onAction="#LogOut" prefHeight="37.0" prefWidth="90.0" text="Cerrar sesión" />
+      <Button fx:id="interactionButton" layoutX="251.0" layoutY="546.0" mnemonicParsing="false" onAction="#goToInteraction" prefHeight="29.0" prefWidth="116.0" text="Interacciones" />
    </children>
 </AnchorPane>

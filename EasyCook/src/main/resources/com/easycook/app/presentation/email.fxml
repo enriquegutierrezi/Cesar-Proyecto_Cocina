@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.emailController">
+   <children>
+      <AnchorPane prefHeight="118.0" prefWidth="400.0">
+         <children>
+            <Text layoutX="97.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mensajes" wrappingWidth="241.336669921875">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Button fx:id="returnButton" layoutX="19.0" layoutY="537.0" mnemonicParsing="false" onAction="#Return" prefHeight="34.0" prefWidth="58.0" text="Volver" />
+      <TextFlow fx:id="messagge1" layoutX="42.0" layoutY="183.0" prefHeight="64.0" prefWidth="317.0" />
+      <TextFlow fx:id="messagge2" layoutX="48.0" layoutY="268.0" prefHeight="64.0" prefWidth="310.0" />
+      <TextFlow fx:id="messagge3" layoutX="45.0" layoutY="350.0" prefHeight="64.0" prefWidth="310.0" />
+      <TextFlow fx:id="messagge4" layoutX="45.0" layoutY="430.0" prefHeight="64.0" prefWidth="310.0" />
+      <Button fx:id="lookButton" layoutX="149.0" layoutY="503.0" mnemonicParsing="false" onAction="#LookMessages" prefHeight="34.0" prefWidth="108.0" text="Ver mensajes" />
+   </children>
+</AnchorPane>

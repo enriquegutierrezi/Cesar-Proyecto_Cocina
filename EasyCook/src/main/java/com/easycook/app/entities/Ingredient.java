@@ -10,6 +10,13 @@ public class Ingredient {
 
     
 
+    public Ingredient( String name, char state/*int amount*/) {
+        this.name = name;
+        this.state = state;
+      //  this.amount = amount;
+    
+    }
+
     public Ingredient(int id, String name, char state/*int amount*/) {
         this.id = id;
         this.name = name;

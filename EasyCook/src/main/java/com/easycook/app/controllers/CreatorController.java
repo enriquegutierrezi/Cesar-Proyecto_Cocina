@@ -22,6 +22,19 @@ public class CreatorController {
         this.gson = new GsonBuilder().create();
     }
 
+    public static ArrayList<Creator> getAllCreators() {
+        Gson localGson = new GsonBuilder().create();
+        MongoConnection mongoConnection = new MongoConnection();
+		ArrayList<Creator> creators = new ArrayList<Creator>();
+		MongoCollection<Document> documents = MongoConnection.findCollection(Creator.COLLECTION_NAME);
+		try (MongoCursor<Document> cursor = documents.find().iterator()) {
+			while (cursor.hasNext()) {
+				creators.add(localGson.fromJson(cursor.next().toJson(), Creator.class));
+			}
+		}
+		return creators;
+    }
+
     public ArrayList<Creator> findAllCreators() {
         MongoConnection mongoConnection = new MongoConnection();
         ArrayList<Creator> creators = new ArrayList<Creator>();
@@ -99,5 +112,13 @@ public class CreatorController {
 
         int lastId = creators.size() > 0 ? creators.stream().max(Comparator.comparing(Creator::getId)).get().getId() : 0;
         return lastId + 1;
+    }
+
+    public Optional<Creator> getCreatorByPassword(String nickname, String password) {
+        ArrayList<Creator> creators = CreatorController.getAllCreators();
+        return creators
+            .stream()
+            .filter(creator -> (creator.getName().equals(nickname) && creator.getPassword().equals(password)))
+            .findFirst();
     }
 }

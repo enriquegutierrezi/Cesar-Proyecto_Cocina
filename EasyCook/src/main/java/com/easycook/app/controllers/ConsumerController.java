@@ -2,6 +2,7 @@ package com.easycook.app.controllers;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Optional;
 
 import com.easycook.app.config.MongoConnection;
 import com.easycook.app.entities.Consumer;
@@ -20,6 +21,19 @@ public class ConsumerController {
 
     public ConsumerController() {
         this.gson = new GsonBuilder().create();
+    }
+
+    public static ArrayList<Consumer> getAllConsumers() {
+        Gson localGson = new GsonBuilder().create();
+        MongoConnection mongoConnection = new MongoConnection();
+		ArrayList<Consumer> consumers = new ArrayList<Consumer>();
+		MongoCollection<Document> documents = MongoConnection.findCollection(Consumer.COLLECTION_NAME);
+		try (MongoCursor<Document> cursor = documents.find().iterator()) {
+			while (cursor.hasNext()) {
+				consumers.add(localGson.fromJson(cursor.next().toJson(), Consumer.class));
+			}
+		}
+		return consumers;
     }
 
     public ArrayList<Consumer> findAllConsumers() {
@@ -99,5 +113,13 @@ public class ConsumerController {
 
         int lastId = consumers.size() > 0 ? consumers.stream().max(Comparator.comparing(Consumer::getId)).get().getId() : 0;
 		return lastId + 1;
+    }
+
+    public Optional<Consumer> getConsumerByPassword(String nickname, String password) {
+        ArrayList<Consumer> consumers = ConsumerController.getAllConsumers();
+        return consumers
+            .stream()
+            .filter(consumer -> (consumer.getName().equals(nickname) && consumer.getPassword().equals(password)))
+            .findFirst();
     }
 }

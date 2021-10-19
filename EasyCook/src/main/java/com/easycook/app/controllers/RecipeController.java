@@ -98,6 +98,20 @@ public class RecipeController {
 
         return recipes.stream().filter(recipe -> recipe.getCookingTime() <= time).collect(Collectors.toList());
     }
+
+    public List<Recipe> findByRecipeName(String name){
+        MongoConnection mongoConnection = new MongoConnection();
+        ArrayList<Recipe> recipes = new ArrayList<>();
+		MongoCollection<Document> documents = MongoConnection.findCollection(Recipe.COLLECTION_NAME);
+		try (MongoCursor<Document> cursor = documents.find().iterator()) {
+			while (cursor.hasNext()) {
+				recipes.add(this.gson.fromJson(cursor.next().toJson(), Recipe.class));
+			}
+		}
+
+        return recipes.stream().filter(recipe -> recipe.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
+    }
+
     public Recipe createRecipe(Recipe recipe) {
         MongoConnection mongoConnection = new MongoConnection();
         ArrayList<Recipe> recipes = new ArrayList<>();

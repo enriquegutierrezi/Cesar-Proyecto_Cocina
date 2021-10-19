@@ -36,8 +36,8 @@ public class SearchMenuController {
     }
 
     @FXML
-    void searchByName(ActionEvent event) {
-
+    void searchByName(ActionEvent event) throws IOException {
+        App.setRoot("searchByRecipeName");
     }
 
 }

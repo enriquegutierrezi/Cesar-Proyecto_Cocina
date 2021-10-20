@@ -12,9 +12,9 @@ public class Creator extends Guest {
     private String password;
     private ArrayList<Blog> blogs;
     private ArrayList<Recipe> recipes;
-    
+
     public Creator(int id, String name, ArrayList<Blog> blogs, ArrayList<Recipe> recipes) {
-        super(id,name);
+        super(id, name);
         this.blogs = blogs;
         this.recipes = recipes;
     }
@@ -26,26 +26,29 @@ public class Creator extends Guest {
     }
 
     public ObjectId get_id() {
-		return _id;
-	}
+        return _id;
+    }
 
-	public void set_id(ObjectId _id) {
-		this._id = _id;
-	}
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
 
     public ArrayList<Blog> getBlogs() {
         return blogs;
     }
+
     public void setBlogs(ArrayList<Blog> blogs) {
         this.blogs = blogs;
     }
+
     public ArrayList<Recipe> getRecipes() {
         return recipes;
     }
+
     public void setRecipes(ArrayList<Recipe> recipes) {
         this.recipes = recipes;
     }
-    
+
     public String getEmail() {
         return email;
     }

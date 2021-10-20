@@ -8,11 +8,11 @@ public class Recipe {
     private int id;
     private String name;
     private int cookingTime;
-    private ArrayList<Ingredient> ingredients;
+    private ArrayList<IngredientRecipe> ingredients;
     private int amountPeople;
     private String urlImage;
 
-    public Recipe(int id, String name, int cookingTime, int amountPeople,ArrayList<Ingredient> ingredients,String url) {
+    public Recipe(int id, String name, int cookingTime, int amountPeople, ArrayList<IngredientRecipe> ingredients, String url) {
         this.id = id;
         this.name = name;
         this.cookingTime = cookingTime;
@@ -20,7 +20,7 @@ public class Recipe {
         this.ingredients = ingredients;
         this.urlImage = url;
     }
-    
+
 
     public static String getCollectionName() {
         return COLLECTION_NAME;
@@ -40,37 +40,46 @@ public class Recipe {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
-    public ArrayList<Ingredient> getIngredients() {
+
+    public ArrayList<IngredientRecipe> getIngredients() {
         return ingredients;
     }
-    public void setIngredients(ArrayList<Ingredient> ingredients) {
+
+    public void setIngredients(ArrayList<IngredientRecipe> ingredients) {
         this.ingredients = ingredients;
     }
+
     public int getCookingTime() {
         return cookingTime;
     }
+
     public void setCookingTime(int cookingTime) {
         this.cookingTime = cookingTime;
     }
+
     public int getAmountPeople() {
         return amountPeople;
     }
+
     public void setAmountPeople(int amountPeople) {
         this.amountPeople = amountPeople;
     }
-    
+
     @Override
     public String toString() {
         return super.toString();
     }
-    
+
 }

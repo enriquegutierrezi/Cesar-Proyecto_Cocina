@@ -5,12 +5,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.emailFormController">
-   <children>
-      <TextField fx:id="txtTo" layoutX="79.0" layoutY="71.0" prefHeight="26.0" prefWidth="219.0" promptText="Para" />
-      <TextArea fx:id="txtMessage" layoutX="79.0" layoutY="122.0" prefHeight="200.0" prefWidth="219.0" promptText="Mensaje" />
-      <Button fx:id="SendButton" layoutX="149.0" layoutY="358.0" mnemonicParsing="false" onAction="#SendMessage" prefHeight="35.0" prefWidth="80.0" text="Enviar" />
-      <Button fx:id="returnButton" layoutX="27.0" layoutY="527.0" mnemonicParsing="false" onAction="#Return" prefHeight="35.0" prefWidth="69.0" text="Volver" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #466D5E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.emailFormController">
+    <children>
+        <TextField fx:id="txtTo" layoutX="79.0" layoutY="71.0" prefHeight="26.0" prefWidth="219.0" promptText="Para" />
+        <TextArea fx:id="txtMessage" layoutX="79.0" layoutY="122.0" prefHeight="200.0" prefWidth="219.0" promptText="Mensaje" />
+        <Button fx:id="SendButton" layoutX="149.0" layoutY="358.0" mnemonicParsing="false" onAction="#SendMessage" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: FFC733;" text="Enviar" />
+        <Button fx:id="returnButton" layoutX="27.0" layoutY="527.0" mnemonicParsing="false" onAction="#Return" prefHeight="35.0" prefWidth="69.0" style="-fx-background-color: FFC733;" text="Volver" />
+    </children>
 </AnchorPane>

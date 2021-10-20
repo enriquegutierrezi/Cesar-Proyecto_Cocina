@@ -1,27 +1,23 @@
 package com.easycook.app.entities;
 
-public class Ingredient {
-    public static final String COLLECTION_NAME = "ingredients";
+public class IngredientRecipe {
 
     private int id;
     private String name;
     private char state;
-    //private int amount;
+    private int amount;
 
-
-    public Ingredient(String name, char state/*int amount*/) {
+    public IngredientRecipe(String name, char state, int amount) {
         this.name = name;
         this.state = state;
-        //  this.amount = amount;
-
+        this.amount = amount;
     }
 
-    public Ingredient(int id, String name, char state/*int amount*/) {
+    public IngredientRecipe(int id, String name, char state, int amount) {
         this.id = id;
         this.name = name;
         this.state = state;
-        //  this.amount = amount;
-
+        this.amount = amount;
     }
 
     public char getState() {
@@ -32,14 +28,13 @@ public class Ingredient {
         this.state = state;
     }
 
-/*    public int getAmount() {
+    public int getAmount() {
         return amount;
     }
 
     public void setAmount(int amount) {
         this.amount = amount;
     }
-    */
 
     public int getId() {
         return id;
@@ -56,8 +51,4 @@ public class Ingredient {
     public void setName(String name) {
         this.name = name;
     }
-
-
 }
-
-

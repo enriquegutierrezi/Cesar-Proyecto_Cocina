@@ -1,5 +1,6 @@
 package com.easycook.app.presentation;
 
+
 import com.easycook.app.controllers.RecipeController;
 import com.easycook.app.entities.IngredientRecipe;
 import com.easycook.app.entities.Recipe;
@@ -10,12 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.util.List;
 
-public class SearchByAmountPeopleController {
+public class SearchByRecipeNameController {
+
 
     @FXML
     private Label Amount1;
@@ -72,10 +73,7 @@ public class SearchByAmountPeopleController {
     private Button returnButton;
 
     @FXML
-    private AnchorPane txtIngredient12;
-
-    @FXML
-    private TextField txtamount;
+    private TextField txtName;
 
     @FXML
     void NextPage(ActionEvent event) {
@@ -90,7 +88,7 @@ public class SearchByAmountPeopleController {
     @FXML
     void SearchRecipe(ActionEvent event) {
         RecipeController recipeController = new RecipeController();
-        List<Recipe> recipes = recipeController.findByAmount(Integer.parseInt(txtamount.getText()));
+        List<Recipe> recipes = recipeController.findByRecipeName(txtName.getText());
         Image recipe1;
 
         if (recipes.size() == 1) {
@@ -126,13 +124,13 @@ public class SearchByAmountPeopleController {
             CookingTime2.setText(String.valueOf(recipes.get(1).getCookingTime()) + "minutos");
             Amount2.setText(recipes.get(1).getAmountPeople() + "personas");
 
-            String ingredients2 = "";
+            StringBuilder ingredients2 = new StringBuilder();
 
             for (IngredientRecipe ing : recipes.get(1).getIngredients()) {
-                ingredients2 += String.format("%s\n", ing.getName());
+                ingredients2.append(String.format("%s\n", ing.getName()));
             }
 
-            Ingrediemt21.setText(ingredients2);
+            Ingrediemt21.setText(ingredients2.toString());
 
 
             recipe1 = new Image(recipes.get(0).getUrlImage());
@@ -145,13 +143,13 @@ public class SearchByAmountPeopleController {
             CookingTime.setText(String.valueOf(recipes.get(0).getCookingTime()) + " minutos");
             Amount1.setText(recipes.get(0).getAmountPeople() + " personas");
 
-            StringBuilder ingredients1 = new StringBuilder();
+            String ingredients1 = "";
 
             for (IngredientRecipe ing : recipes.get(0).getIngredients()) {
-                ingredients1.append(String.format("%s\n", ing.getName()));
+                ingredients1 += String.format("%s\n", ing.getName());
             }
 
-            Ingrediemt11.setText(ingredients1.toString());
+            Ingrediemt11.setText(ingredients1);
 
             recipeTitle2.setText(recipes.get(1).getName());
             CookingTime2.setText(String.valueOf(recipes.get(1).getCookingTime()) + "minutos");
@@ -190,3 +188,5 @@ public class SearchByAmountPeopleController {
     }
 
 }
+
+

@@ -12,7 +12,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 public class MongoConnection {
-	private static MongoClient mongoClient;
+    private static MongoClient mongoClient;
     private static final String DB = "EasyCook";
 
     public MongoConnection() {
@@ -36,7 +36,7 @@ public class MongoConnection {
         colection.insertOne(nDoc);
     }
 
-    public static void updateObject(String nameCollection, String _id,  Document nDoc) {
+    public static void updateObject(String nameCollection, String _id, Document nDoc) {
         MongoDatabase mongoBD = mongoClient.getDatabase(DB);
         MongoCollection<Document> collection = mongoBD.getCollection(nameCollection);
         BasicDBObject query = new BasicDBObject();

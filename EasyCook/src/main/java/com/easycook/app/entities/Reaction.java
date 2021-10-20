@@ -10,6 +10,6 @@ public class Reaction {
     public void setId(String id) {
         this.id = id;
     }
- 
-    
+
+
 }

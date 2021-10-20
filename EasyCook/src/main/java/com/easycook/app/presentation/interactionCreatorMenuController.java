@@ -26,9 +26,38 @@ public class interactionCreatorMenuController {
 
     private String username;
 
+    private Boolean isConsumer;
+
     @FXML
     void Return(ActionEvent event) throws IOException {
-        App.setRoot("CreationsMenu");
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+        if (!isConsumer) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("CreationsMenu.fxml"));
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                CreationsMenuController controller = loader.getController();
+                controller.setUsername(username);
+                loader.setController(controller);
+                stage.show();
+            } catch (IOException e) {
+                System.err.printf("Error: %s%n", e.getMessage());
+            }
+        } else {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("searchMenu.fxml"));
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                SearchMenuController controller = loader.getController();
+                controller.setUsername(username);
+                loader.setController(controller);
+                stage.show();
+            } catch (IOException e) {
+                System.err.printf("Error: %s%n", e.getMessage());
+            }
+        }
     }
 
     @FXML
@@ -42,6 +71,7 @@ public class interactionCreatorMenuController {
             stage.setScene(scene);
             emailController controller = loader.getController();
             controller.setUsername(username);
+            controller.setIsConsumer(isConsumer);
             loader.setController(controller);
             stage.show();
         } catch (IOException e) {
@@ -60,6 +90,7 @@ public class interactionCreatorMenuController {
             stage.setScene(scene);
             emailFormController controller = loader.getController();
             controller.setUsername(username);
+            controller.setIsConsumer(isConsumer);
             loader.setController(controller);
             stage.show();
         } catch (IOException e) {
@@ -73,6 +104,14 @@ public class interactionCreatorMenuController {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Boolean getIsConsumer() {
+        return isConsumer;
+    }
+
+    public void setIsConsumer(Boolean isConsumer) {
+        this.isConsumer = isConsumer;
     }
 }
     

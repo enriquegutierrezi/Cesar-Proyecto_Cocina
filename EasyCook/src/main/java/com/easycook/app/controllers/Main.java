@@ -3,10 +3,12 @@ package com.easycook.app.controllers;
 import java.util.ArrayList;
 
 import com.easycook.app.entities.Ingredient;
+import com.easycook.app.entities.Message;
 import com.easycook.app.entities.Recipe;
+import com.easycook.app.exceptions.NotFoundException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NotFoundException {
 
         /*IngredientController ingredientController = new IngredientController();
         RecipeController recipeController = new RecipeController();
@@ -59,5 +61,9 @@ public class Main {
 
         RecipeController recipeController = new RecipeController();
         recipeController.findByAmount(8).forEach(System.out::println);
+
+        MessageController messageController = new MessageController();
+        Message message = new Message(messageController.getNextId(), "From", "To", "Content", false);
+        messageController.createMessage(message);
     }
 }

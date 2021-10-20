@@ -1,19 +1,28 @@
 package com.easycook.app.presentation;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.image.ImageView;
+import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView; 
+import javafx.scene.image.Image;
 
-// App.setRoot("secondary");
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PrimaryController {
+
+
+public class PrimaryController implements Initializable {
 
 
     @FXML
     private Button GuestModeButton;
+
+    @FXML
+    private ImageView fondo;
 
     @FXML
     private Button Login;
@@ -23,6 +32,8 @@ public class PrimaryController {
 
     @FXML
     private Hyperlink PasswordRecoverButton;
+
+    
 
     @FXML
     void GoToGuestMode(ActionEvent event) {
@@ -43,4 +54,12 @@ public class PrimaryController {
     void GoToRecoverPassword(ActionEvent event) {
 
     }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        Image myImage = new Image (getClass().getResourceAsStream("fondo.jpeg"));
+        fondo.setImage(myImage);
+        
+    }
+
 }

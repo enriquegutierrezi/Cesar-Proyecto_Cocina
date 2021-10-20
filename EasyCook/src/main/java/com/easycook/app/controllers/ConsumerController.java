@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.easycook.app.config.MongoConnection;
 import com.easycook.app.entities.Consumer;
+import com.easycook.app.exceptions.AlreadyExistException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -17,7 +18,7 @@ import org.bson.Document;
 
 public class ConsumerController {
 
-    private Gson gson;
+    private final Gson gson;
 
     public ConsumerController() {
         this.gson = new GsonBuilder().create();
@@ -26,73 +27,63 @@ public class ConsumerController {
     public static ArrayList<Consumer> getAllConsumers() {
         Gson localGson = new GsonBuilder().create();
         MongoConnection mongoConnection = new MongoConnection();
-		ArrayList<Consumer> consumers = new ArrayList<Consumer>();
-		MongoCollection<Document> documents = MongoConnection.findCollection(Consumer.COLLECTION_NAME);
-		try (MongoCursor<Document> cursor = documents.find().iterator()) {
-			while (cursor.hasNext()) {
-				consumers.add(localGson.fromJson(cursor.next().toJson(), Consumer.class));
-			}
-		}
-		return consumers;
+        ArrayList<Consumer> consumers = new ArrayList<Consumer>();
+        MongoCollection<Document> documents = MongoConnection.findCollection(Consumer.COLLECTION_NAME);
+        try (MongoCursor<Document> cursor = documents.find().iterator()) {
+            while (cursor.hasNext()) {
+                consumers.add(localGson.fromJson(cursor.next().toJson(), Consumer.class));
+            }
+        }
+        return consumers;
     }
 
     public ArrayList<Consumer> findAllConsumers() {
         MongoConnection mongoConnection = new MongoConnection();
-		ArrayList<Consumer> consumers = new ArrayList<Consumer>();
-		MongoCollection<Document> documents = MongoConnection.findCollection(Consumer.COLLECTION_NAME);
-		try (MongoCursor<Document> cursor = documents.find().iterator()) {
-			while (cursor.hasNext()) {
-				consumers.add(this.gson.fromJson(cursor.next().toJson(), Consumer.class));
-			}
-		}
-		return consumers;
+        ArrayList<Consumer> consumers = new ArrayList<Consumer>();
+        MongoCollection<Document> documents = MongoConnection.findCollection(Consumer.COLLECTION_NAME);
+        try (MongoCursor<Document> cursor = documents.find().iterator()) {
+            while (cursor.hasNext()) {
+                consumers.add(this.gson.fromJson(cursor.next().toJson(), Consumer.class));
+            }
+        }
+        return consumers;
     }
 
     public Consumer findByName(String name) {
         MongoConnection mongoConnection = new MongoConnection();
         Document document = MongoConnection.searchByName(Consumer.COLLECTION_NAME, name);
-        Consumer consumer = this.gson.fromJson(document.toJson(), Consumer.class);
 
-        return consumer;
+        return this.gson.fromJson(document.toJson(), Consumer.class);
     }
 
-    public Consumer createConsumer(Consumer consumer) {
-        MongoConnection mongoConnection = new MongoConnection();
-        ArrayList<Consumer> consumers = new ArrayList<Consumer>();
-		MongoCollection<Document> documents = MongoConnection.findCollection(Consumer.COLLECTION_NAME);
-		try (MongoCursor<Document> cursor = documents.find().iterator()) {
-			while (cursor.hasNext()) {
-				consumers.add(this.gson.fromJson(cursor.next().toJson(), Consumer.class));
-			}
-		}
-
-        Boolean existConsumer = consumers.stream().filter(c -> c.getName().equals(consumer.getName())).findAny().isPresent();
+    public Consumer createConsumer(Consumer consumer) throws AlreadyExistException {
+        ArrayList<Consumer> consumers = ConsumerController.getAllConsumers();
+        boolean existConsumer = consumers.stream().anyMatch(c -> c.getName().equals(consumer.getName()));
 
         if (existConsumer) {
-            System.out.println("Consumidor ya existe");
-            return null;
+            throw new AlreadyExistException(String.format("Consumer %s already exist", consumer.getName()));
         }
 
-		String temp = this.gson.toJson(consumer);
-		Document d = Document.parse(temp);
-		MongoConnection.insertObject(Consumer.COLLECTION_NAME, d);
+        String temp = this.gson.toJson(consumer);
+        Document d = Document.parse(temp);
+        MongoConnection.insertObject(Consumer.COLLECTION_NAME, d);
 
-		return consumer;
+        return consumer;
     }
 
     public Consumer updateConsumer(Consumer consumer) {
         MongoConnection mongoConnection = new MongoConnection();
         MongoCollection<Document> collection = MongoConnection.findCollection(Consumer.COLLECTION_NAME);
 
-		BasicDBObject doc = new BasicDBObject();
-		doc.put("consumer", consumer.getId());
-		collection.deleteOne(doc);
+        BasicDBObject doc = new BasicDBObject();
+        doc.put("consumer", consumer.getId());
+        collection.deleteOne(doc);
 
-		String temp = this.gson.toJson(consumer);
-		Document d = Document.parse(temp);
-		MongoConnection.insertObject(Consumer.COLLECTION_NAME, d);
+        String temp = this.gson.toJson(consumer);
+        Document d = Document.parse(temp);
+        MongoConnection.insertObject(Consumer.COLLECTION_NAME, d);
 
-		return consumer;
+        return consumer;
     }
 
     public Consumer deleteConsumer(Consumer consumer) {
@@ -102,24 +93,16 @@ public class ConsumerController {
     }
 
     public int getNextId() {
-        MongoConnection mongoConnection = new MongoConnection();
-		ArrayList<Consumer> consumers = new ArrayList<Consumer>();
-		MongoCollection<Document> documents = MongoConnection.findCollection(Consumer.COLLECTION_NAME);
-		try (MongoCursor<Document> cursor = documents.find().iterator()) {
-			while (cursor.hasNext()) {
-				consumers.add(this.gson.fromJson(cursor.next().toJson(), Consumer.class));
-			}
-		}
-
+        ArrayList<Consumer> consumers = ConsumerController.getAllConsumers();
         int lastId = consumers.size() > 0 ? consumers.stream().max(Comparator.comparing(Consumer::getId)).get().getId() : 0;
-		return lastId + 1;
+        return lastId + 1;
     }
 
     public Optional<Consumer> getConsumerByPassword(String nickname, String password) {
         ArrayList<Consumer> consumers = ConsumerController.getAllConsumers();
         return consumers
-            .stream()
-            .filter(consumer -> (consumer.getName().equals(nickname) && consumer.getPassword().equals(password)))
-            .findFirst();
+                .stream()
+                .filter(consumer -> (consumer.getName().equals(nickname) && consumer.getPassword().equals(password)))
+                .findFirst();
     }
 }

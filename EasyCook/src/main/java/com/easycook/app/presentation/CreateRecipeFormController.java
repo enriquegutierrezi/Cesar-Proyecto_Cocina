@@ -1,18 +1,21 @@
 package com.easycook.app.presentation;
 
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-import com.easycook.app.controllers.IngredientController;
 import com.easycook.app.controllers.RecipeController;
-import com.easycook.app.entities.Ingredient;
+import com.easycook.app.entities.IngredientRecipe;
 import com.easycook.app.entities.Recipe;
-
+import com.easycook.app.exceptions.AlreadyExistException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class CreateRecipeFormController {
 
@@ -62,32 +65,45 @@ public class CreateRecipeFormController {
 
     @FXML
     void CreateRecipe(ActionEvent event) {
-        IngredientController ingredientController = new IngredientController();
         RecipeController recipeController = new RecipeController();
 
-        Ingredient ingredient1 = new Ingredient(txtIngredient1.getText(),txtState1.getText().charAt(0));
-        ingredientController.createIngredient(ingredient1);
-        Ingredient ingredient2 = new Ingredient(txtIngredient2.getText(),txtState2.getText().charAt(0));
-        ingredientController.createIngredient(ingredient2);
-        Ingredient ingredient3 = new Ingredient(txtIngredient3.getText(),txtState3.getText().charAt(0));
-        ingredientController.createIngredient(ingredient3);
+        IngredientRecipe ingredient1 =
+                !txtIngredient1.getText().trim().isEmpty() ?
+                        new IngredientRecipe(txtIngredient1.getText(), txtState1.getText().charAt(0), Integer.parseInt(txtAmount1.getText())) :
+                        null;
+        IngredientRecipe ingredient2 =
+                !txtIngredient2.getText().trim().isEmpty() ?
+                        new IngredientRecipe(txtIngredient2.getText(), txtState2.getText().charAt(0), Integer.parseInt(txtAmount2.getText())) :
+                        null;
+        IngredientRecipe ingredient3 =
+                !txtIngredient3.getText().trim().isEmpty() ?
+                        new IngredientRecipe(txtIngredient3.getText(), txtState3.getText().charAt(0), Integer.parseInt(txtAmount3.getText())) :
+                        null;
 
-        ArrayList<Ingredient> ingredientsList = new ArrayList<>();
-        
+        List<IngredientRecipe> ingredientsList = new ArrayList<>();
 
         ingredientsList.add(ingredient1);
         ingredientsList.add(ingredient2);
         ingredientsList.add(ingredient3);
 
-        Recipe recipe = new Recipe(recipeController.getNextId(), txtNameRecipe.getText(), Integer.parseInt(txtCookingTime.getText()), Integer.parseInt(txtAmountPeople.getText()),ingredientsList,txtUrl.getText());
-        recipeController.createRecipe(recipe);
+        ingredientsList = ingredientsList.stream().filter(Objects::nonNull).collect(Collectors.toList());
 
-        
+        Recipe recipe = new Recipe(recipeController.getNextId(), txtNameRecipe.getText(), Integer.parseInt(txtCookingTime.getText()), Integer.parseInt(txtAmountPeople.getText()), new ArrayList<>(ingredientsList), txtUrl.getText());
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        try {
+            recipeController.createRecipe(recipe);
+            alert.setAlertType(Alert.AlertType.CONFIRMATION);
+            alert.setContentText(String.format("La receta %s ha sido creada exitosamente", txtNameRecipe.getText()));
+            alert.show();
+        } catch (AlreadyExistException e) {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.format("La receta %s ya existe", txtNameRecipe.getText()));
+            alert.show();
+        }
     }
 
     @FXML
     void Return(ActionEvent event) throws IOException {
         App.setRoot("CreationsMenu");
     }
-
 }

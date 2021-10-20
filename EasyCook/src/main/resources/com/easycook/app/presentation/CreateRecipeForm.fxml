@@ -6,32 +6,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.CreateRecipeFormController">
-   <children>
-      <TextField fx:id="txtNameRecipe" layoutX="94.0" layoutY="152.0" prefHeight="26.0" prefWidth="212.0" promptText="Nombre" />
-      <TextField fx:id="txtCookingTime" layoutX="94.0" layoutY="200.0" prefHeight="26.0" prefWidth="212.0" promptText="Tiempo de preparación" />
-      <TextField fx:id="txtAmountPeople" layoutX="94.0" layoutY="239.0" prefHeight="26.0" prefWidth="212.0" promptText="Cantidad de comensales" />
-      <TextField fx:id="txtUrl" layoutX="94.0" layoutY="284.0" prefHeight="26.0" prefWidth="212.0" promptText="Url de imagen" />
-      <TextField fx:id="txtIngredient1" layoutX="29.0" layoutY="352.0" prefHeight="26.0" prefWidth="156.0" promptText="Ingrediente 1" />
-      <TextField fx:id="txtIngredient3" layoutX="29.0" layoutY="436.0" prefHeight="26.0" prefWidth="156.0" promptText="Ingrediente 2" />
-      <TextField fx:id="txtIngredient2" layoutX="29.0" layoutY="393.0" prefHeight="26.0" prefWidth="156.0" promptText="Ingrediente 2" />
-      <TextField fx:id="txtState1" layoutX="200.0" layoutY="352.0" prefHeight="26.0" prefWidth="42.0" promptText="Tipo" />
-      <TextField fx:id="txtAmount1" layoutX="252.0" layoutY="352.0" prefHeight="26.0" prefWidth="118.0" promptText="Cantidad" />
-      <TextField fx:id="txtState2" layoutX="200.0" layoutY="393.0" prefHeight="26.0" prefWidth="42.0" promptText="Tipo" />
-      <TextField fx:id="txtAmount2" layoutX="252.0" layoutY="393.0" prefHeight="26.0" prefWidth="118.0" promptText="Cantidad" />
-      <TextField fx:id="txtState3" layoutX="200.0" layoutY="436.0" prefHeight="26.0" prefWidth="42.0" promptText="Tipo" />
-      <TextField fx:id="txtAmount3" layoutX="252.0" layoutY="436.0" prefHeight="26.0" prefWidth="118.0" promptText="Cantidad" />
-      <Button fx:id="CreateRecipeButton" layoutX="148.0" layoutY="494.0" mnemonicParsing="false" onAction="#CreateRecipe" prefHeight="26.0" prefWidth="118.0" text="Crear receta" />
-      <AnchorPane layoutX="-2.0" prefHeight="134.0" prefWidth="406.0">
-         <children>
-            <Text layoutX="22.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Muestranos tu receta" wrappingWidth="369.33673095703125">
-               <font>
-                  <Font size="37.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-      <Button fx:id="ReturnButton" layoutX="14.0" layoutY="553.0" mnemonicParsing="false" onAction="#Return" prefHeight="26.0" prefWidth="118.0" text="Volver" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #466D5E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.CreateRecipeFormController">
+    <children>
+        <TextField fx:id="txtNameRecipe" layoutX="94.0" layoutY="152.0" prefHeight="26.0" prefWidth="212.0" promptText="Nombre" />
+        <TextField fx:id="txtCookingTime" layoutX="94.0" layoutY="200.0" prefHeight="26.0" prefWidth="212.0" promptText="Tiempo de preparación" />
+        <TextField fx:id="txtAmountPeople" layoutX="94.0" layoutY="239.0" prefHeight="26.0" prefWidth="212.0" promptText="Cantidad de comensales" />
+        <TextField fx:id="txtUrl" layoutX="94.0" layoutY="284.0" prefHeight="26.0" prefWidth="212.0" promptText="Url de imagen" />
+        <TextField fx:id="txtIngredient1" layoutX="29.0" layoutY="352.0" prefHeight="26.0" prefWidth="156.0" promptText="Ingrediente 1" />
+        <TextField fx:id="txtIngredient3" layoutX="29.0" layoutY="436.0" prefHeight="26.0" prefWidth="156.0" promptText="Ingrediente 2" />
+        <TextField fx:id="txtIngredient2" layoutX="29.0" layoutY="393.0" prefHeight="26.0" prefWidth="156.0" promptText="Ingrediente 2" />
+        <TextField fx:id="txtState1" layoutX="200.0" layoutY="352.0" prefHeight="26.0" prefWidth="42.0" promptText="Tipo" />
+        <TextField fx:id="txtAmount1" layoutX="252.0" layoutY="352.0" prefHeight="26.0" prefWidth="118.0" promptText="Cantidad" />
+        <TextField fx:id="txtState2" layoutX="200.0" layoutY="393.0" prefHeight="26.0" prefWidth="42.0" promptText="Tipo" />
+        <TextField fx:id="txtAmount2" layoutX="252.0" layoutY="393.0" prefHeight="26.0" prefWidth="118.0" promptText="Cantidad" />
+        <TextField fx:id="txtState3" layoutX="200.0" layoutY="436.0" prefHeight="26.0" prefWidth="42.0" promptText="Tipo" />
+        <TextField fx:id="txtAmount3" layoutX="252.0" layoutY="436.0" prefHeight="26.0" prefWidth="118.0" promptText="Cantidad" />
+        <Button fx:id="CreateRecipeButton" layoutX="132.0" layoutY="496.0" mnemonicParsing="false" onAction="#CreateRecipe" prefHeight="26.0" prefWidth="118.0" style="-fx-background-color: FFC733;" text="Crear receta" textFill="#050505" />
+        <AnchorPane layoutX="-2.0" prefHeight="134.0" prefWidth="406.0">
+            <children>
+                <Text fill="WHITE" layoutX="22.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Muestranos tu receta" wrappingWidth="369.33673095703125">
+                    <font>
+                        <Font size="37.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <Button fx:id="ReturnButton" layoutX="14.0" layoutY="553.0" mnemonicParsing="false" onAction="#Return" prefHeight="26.0" prefWidth="118.0" style="-fx-background-color: FFC733;" text="Volver" />
+    </children>
 </AnchorPane>

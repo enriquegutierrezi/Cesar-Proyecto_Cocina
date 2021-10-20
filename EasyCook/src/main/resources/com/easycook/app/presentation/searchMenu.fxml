@@ -5,21 +5,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.SearchMenuController">
-   <children>
-      <AnchorPane prefHeight="107.0" prefWidth="400.0">
-         <children>
-            <Text layoutX="48.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Qué desea realizar?" wrappingWidth="277.33673095703125">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-      <Button fx:id="IngredientSearchButton" layoutX="81.0" layoutY="150.0" mnemonicParsing="false" onAction="#searchByIngredient" prefHeight="70.0" prefWidth="237.0" text="Busqueda  por ingrediente" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="79.0" />
-      <Button fx:id="peopleFilterButton" layoutX="81.0" layoutY="257.0" mnemonicParsing="false" onAction="#searchByAmountPeople" prefHeight="70.0" prefWidth="237.0" text="Busqueda por cantidad de comensales" />
-      <Button fx:id="timeButton" layoutX="81.0" layoutY="352.0" mnemonicParsing="false" onAction="#SearchByCookingTime" prefHeight="70.0" prefWidth="238.0" text="Buscar por tiempo de preparación" />
-      <Button fx:id="nimeButton" layoutX="80.0" layoutY="444.0" mnemonicParsing="false" onAction="#searchByName" prefHeight="70.0" prefWidth="238.0" text="Bucar por nombre de receta" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #466D5E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.SearchMenuController">
+    <children>
+        <AnchorPane prefHeight="107.0" prefWidth="400.0">
+            <children>
+                <Text layoutX="48.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Qué desea realizar?" wrappingWidth="277.33673095703125">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <Button fx:id="IngredientSearchButton" layoutX="81.0" layoutY="150.0" mnemonicParsing="false" onAction="#searchByIngredient" prefHeight="70.0" prefWidth="237.0" style="-fx-background-color: FFC733;" text="Busqueda  por ingrediente" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="79.0" />
+        <Button fx:id="peopleFilterButton" layoutX="81.0" layoutY="257.0" mnemonicParsing="false" onAction="#searchByAmountPeople" prefHeight="70.0" prefWidth="237.0" style="-fx-background-color: FFC733;" text="Busqueda por cantidad de comensales" />
+        <Button fx:id="timeButton" layoutX="81.0" layoutY="352.0" mnemonicParsing="false" onAction="#SearchByCookingTime" prefHeight="70.0" prefWidth="238.0" style="-fx-background-color: FFC733;" text="Buscar por tiempo de preparación" />
+        <Button fx:id="nimeButton" layoutX="80.0" layoutY="444.0" mnemonicParsing="false" onAction="#searchByName" prefHeight="70.0" prefWidth="238.0" style="-fx-background-color: FFC733;" text="Bucar por nombre de receta" />
+      <Button fx:id="interactionButton" layoutX="267.0" layoutY="537.0" mnemonicParsing="false" onAction="#GoToInteraction" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: FFC733;" text="Interacción" />
+      <Button fx:id="returnButton" layoutX="14.0" layoutY="537.0" mnemonicParsing="false" onAction="#Return" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: FFC733;" text="Salir" />
+    </children>
 </AnchorPane>

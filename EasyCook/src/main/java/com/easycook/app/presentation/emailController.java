@@ -99,5 +99,3 @@ public class emailController {
         this.username = username;
     }
 }
-    
-

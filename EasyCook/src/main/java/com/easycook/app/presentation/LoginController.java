@@ -1,6 +1,5 @@
 package com.easycook.app.presentation;
 
-
 import com.easycook.app.controllers.ConsumerController;
 import com.easycook.app.controllers.CreatorController;
 import com.easycook.app.entities.Consumer;
@@ -42,11 +41,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField txtUsername;
-    
 
     @FXML
     private ImageView fondo;
-
 
     @FXML
     void goToApp(ActionEvent event) throws Exception {
@@ -74,7 +71,6 @@ public class LoginController implements Initializable {
             }
         }
 
-
         Optional<Consumer> consumerOptional = consumerController.getConsumerByPassword(username, password);
         if (consumerOptional.isPresent()) {
             Node node = (Node) event.getSource();
@@ -84,7 +80,7 @@ public class LoginController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("searchMenu.fxml"));
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
-                CreationsMenuController controller = loader.getController();
+                SearchMenuController controller = loader.getController();
                 controller.setUsername(consumerOptional.get().getName());
                 loader.setController(controller);
                 stage.show();
@@ -103,14 +99,25 @@ public class LoginController implements Initializable {
 
     @FXML
     void returnScene(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("primary.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+            PrimaryController controller = loader.getController();
+            loader.setController(controller);
+            stage.show();
+        } catch (IOException e) {
+            System.err.printf("Error: %s%n", e.getMessage());
+        }
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        Image myImage = new Image (getClass().getResourceAsStream("fondo.jpeg"));
+        Image myImage = new Image(getClass().getResourceAsStream("fondo.jpeg"));
         fondo.setImage(myImage);
-        
+
     }
 }
-

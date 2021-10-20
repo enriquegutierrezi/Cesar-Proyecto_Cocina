@@ -2,9 +2,13 @@ package com.easycook.app.presentation;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView; 
 import javafx.scene.image.Image;
@@ -42,12 +46,36 @@ public class PrimaryController implements Initializable {
 
     @FXML
     void GoToLoginForm(ActionEvent event) throws IOException {
-        App.setRoot("Login");
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+            LoginController controller = loader.getController();
+            loader.setController(controller);
+            stage.show();
+        } catch (IOException e) {
+            System.err.printf("Error: %s%n", e.getMessage());
+        }
     }
 
     @FXML
     void GoToRegisterForm(ActionEvent event) throws IOException {
-        App.setRoot("secondary");
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+            SecondaryController controller = loader.getController();
+            loader.setController(controller);
+            stage.show();
+        } catch (IOException e) {
+            System.err.printf("Error: %s%n", e.getMessage());
+        }
     }
 
     @FXML

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #466D5E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.CreateBlogFormController">
+    <children>
+        <AnchorPane prefHeight="171.0" prefWidth="400.0">
+            <children>
+                <TextField fx:id="txtBlogTitle" alignment="TOP_CENTER" layoutX="79.0" layoutY="73.0" prefHeight="26.0" prefWidth="247.0" promptText="Título del blog" />
+                <TextField fx:id="txtUrlImage" alignment="TOP_CENTER" layoutX="79.0" layoutY="145.0" prefHeight="26.0" prefWidth="247.0" promptText="URL de imagen" />
+            </children>
+        </AnchorPane>
+        <TextArea fx:id="txtBlogContent" layoutX="42.0" layoutY="215.0" prefHeight="200.0" prefWidth="315.0" promptText="Contenido del blog" />
+        <Button fx:id="cancelButton" layoutX="42.0" layoutY="492.0" mnemonicParsing="false" onAction="#Return" prefHeight="37.0" prefWidth="92.0" style="-fx-background-color: white;" text="Cancelar" />
+        <Button fx:id="PublishButton" layoutX="265.0" layoutY="492.0" mnemonicParsing="false" onAction="#Publish" prefHeight="37.0" prefWidth="92.0" style="-fx-background-color: white;" text="Publicar" />
+    </children>
+</AnchorPane>

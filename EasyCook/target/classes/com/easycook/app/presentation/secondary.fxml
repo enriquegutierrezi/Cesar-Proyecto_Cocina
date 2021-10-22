@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.SecondaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #466D5E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easycook.app.presentation.SecondaryController">
     <children>
-        <Label text="Secondary View" />
-        <Button fx:id="secondaryButton" text="Switch to Primary View" onAction="#switchToPrimary" />
+        <AnchorPane prefHeight="91.0" prefWidth="400.0" style="-fx-background-color: FFC733;">
+            <children>
+                <Text layoutX="44.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido a EasyCook" wrappingWidth="310.9730224609375">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <TextField fx:id="txtEmail" alignment="CENTER" layoutX="100.0" layoutY="307.0" prefHeight="40.0" prefWidth="212.0" promptText="Coreo Electrónico" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+        <TextField fx:id="txtNameUser" alignment="CENTER" layoutX="100.0" layoutY="370.0" prefHeight="34.0" prefWidth="212.0" promptText="Nombre de Usuario" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+        <Button fx:id="CreateButton" layoutX="100.0" layoutY="501.0" mnemonicParsing="false" onAction="#CreateAccount" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: FFC733;" text="Crear Cuenta" />
+        <Button fx:id="ReturnButton" layoutX="14.0" layoutY="552.0" mnemonicParsing="false" onAction="#ReturnToPrimary" prefHeight="34.0" prefWidth="62.0" style="-fx-background-color: FFC733;" text="Volver" />
+        <TextField fx:id="txtPassword" alignment="CENTER" layoutX="100.0" layoutY="422.0" prefHeight="34.0" prefWidth="212.0" promptText="Contraseña" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+        <RadioButton fx:id="ConsumerOption" layoutX="100.0" layoutY="475.0" mnemonicParsing="false" text="Consumidor" />
+        <RadioButton fx:id="CreatorOption" layoutX="213.0" layoutY="475.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="86.0" text="Creador" />
+      <ImageView fx:id="fondo" fitHeight="200.0" fitWidth="200.0" layoutX="100.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
     </children>
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-</VBox>
+</AnchorPane>
